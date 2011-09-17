@@ -21,8 +21,18 @@ sPowerBG.sStatus:SetScript("OnUpdate", function()
 	local value = UnitPower("player")
     sPowerBG.sStatus:SetMinMaxValues(0, UnitPowerMax("player"))
     sPowerBG.sStatus:SetValue(value)
+
 	local color = RAID_CLASS_COLORS[T.myclass]
-	sPowerBG.sStatus:SetStatusBarColor(color.r, color.g, color.b)
+	local r, g, b
+	r = color.r
+	g = color.g
+	b = color.b
+	if ( O.color ) then
+		r, g, b = unpack(O.color)
+	end
+	sPowerBG.sStatus:SetStatusBarColor(r, g, b)
+	--sPowerBG.sStatus:SetStatusBarColor( unpack( color ) )
+
 	--DEFAULT_CHAT_FRAME:AddMessage("Value: "..value)
 	if ( O.text == true ) then
 		sPowerText:SetText(value)

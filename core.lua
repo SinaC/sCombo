@@ -12,16 +12,25 @@ local sCombo = CreateFrame("Frame", "sCombo", UIParent)
 for i = 1, count do
 	sCombo[i] = CreateFrame("Frame", "sCombo"..i, UIParent)
 	sCombo[i]:CreatePanel("Default", O.width, O.height, "CENTER", UIParent, "CENTER", 0, 0)
-	sCombo[i]:CreateShadow("Default")
-		
+	if ( O.fill ) then
+		sCombo[i].sStatus = CreateFrame("StatusBar", "sStatus", sCombo[i])
+		sCombo[i].sStatus:SetStatusBarTexture(C.media.normTex)
+		sCombo[i].sStatus:SetFrameLevel(6)
+		sCombo[i].sStatus:Point("TOPLEFT", sCombo[i], "TOPLEFT", 2, -2)
+		sCombo[i].sStatus:Point("BOTTOMRIGHT", sCombo[i], "BOTTOMRIGHT", -2, 2)
+		sCombo[i].sStatus:SetStatusBarColor(unpack(classOptions["colors"][i]))
+	else
+		sCombo[i]:CreateShadow("Default")
+		sCombo[i]:SetBackdropBorderColor(unpack(classOptions["colors"][i]))
+		--sCombo[i]:SetBackdropColor(unpack(classOptions["colors"][i]))
+	end
+
 	if i == 1 then
 		sCombo[i]:Point(unpack(O.anchor))
 	else
 		sCombo[i]:Point("LEFT", sCombo[i-1], "RIGHT", O.spacing, 0)
 	end
 	
-	--sCombo[i]:SetBackdropBorderColor(unpack(classOptions["colors"][i]))
-	sCombo[i]:SetBackdropColor(unpack(classOptions["colors"][i]))
 	sCombo[i]:RegisterEvent("PLAYER_ENTERING_WORLD")
 	sCombo[i]:RegisterEvent("UNIT_COMBO_POINTS")
 	sCombo[i]:RegisterEvent("UNIT_POWER")

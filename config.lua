@@ -5,9 +5,6 @@
 local T, C, L = unpack(Tukui)
 
 -- TODO: 
--- instead of class
--- COMBO: combo + energy
--- HOLY: holy power + mana
 -- DK: runes + runic power
 Options = {
 	["ROGUE"] = {
@@ -54,16 +51,14 @@ Options = {
 			height = T.Scale(15), 
 			anchor = {"CENTER", UIParent, "CENTER", -630, 190},
 			kind = "HOLY POWER",
+			fill = true,
 		},
 		
 		-- Coloring options
 		["colors"] = { 
-			--[1] = {.69, .31, .31, 1},
-			-- [2] = {.65, .42, .31, 1},
-			-- [3] = {.65, .63, .35, 1},
-			[1] = { 0.94, 0.78, 0, 1 },
-			[2] = { 0.94, 0.78, 0, 1 },
-			[3] = { 0.94, 0.78, 0, 1 },
+			[1] = { 228/255, 225/255, 16/255, 1 },
+			[2] = { 228/255, 225/255, 16/255, 1 },
+			[3] = { 228/255, 225/255, 16/255, 1 },
 		},
 		
 		-- Power plugin options
@@ -74,6 +69,7 @@ Options = {
 			text = false,
 			width = T.Scale(261), -- perfectly fits width of holy power
 			height = T.Scale(10),
+			color = { 0, 0, 1, 1 },
 		},
 		
 		-- Point display plugin options
