@@ -8,13 +8,14 @@ local O = classOptions["power"]
 if O.display ~= true then return end
 
 local kind = O.kind
-local color = RAID_CLASS_COLORS[T.myclass]
 local r, g, b
-r = color.r
-g = color.g
-b = color.b
 if ( O.color ) then
 	r, g, b = unpack(O.color)
+else
+	local color = RAID_CLASS_COLORS[T.myclass]
+	r = color.r
+	g = color.g
+	b = color.b
 end
 
 local sPowerBG = CreateFrame("Frame", "sPowerBG", UIParent)
@@ -83,11 +84,18 @@ sPowerBG:SetScript("OnEvent", function(self, event)
 		else
 			sPowerBG:Hide()
 		end
-	else
-		sPowerBG:Show()
-		self:SetScript("OnUpdate", OnUpdate) -- TODO: why OnShow is not called
 	end
 end)
 
 sPowerBG:SetScript("OnShow", OnShow) -- This is what stops constant OnUpdate
 sPowerBG:SetScript("OnHide", OnHide)
+
+-- If autohide is not set, show frame
+if ( O.autohide ~= true ) then
+	if ( sPowerBG:IsShown() ) then
+		self:SetScript("OnUpdate", OnUpdate)
+
+	else
+		sPowerBG:Show()
+	end
+end
