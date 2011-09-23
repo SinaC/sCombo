@@ -25,8 +25,6 @@ else
 	sPowerBG:CreatePanel(nil, O.width , O.height, "TOPLEFT", sCombo[1], "BOTTOMLEFT", 0, -3)
 end
 
-local sPowerText = T.SetFontString(sPowerBG, C.media.font, 20, "THINOUTLINE")
-sPowerText:Point("TOP", sPowerBG, "BOTTOM", 0, -3)
 
 sPowerBG.sStatus = CreateFrame("StatusBar", "sStatus", sPowerBG)
 sPowerBG.sStatus:SetStatusBarTexture(C.media.normTex)
